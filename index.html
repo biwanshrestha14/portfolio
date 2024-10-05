@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>biwanshrestha14</title>
+    <link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/> 
+    <link rel="shortcut icon" href="./b1-tv9065.logowik.com.webp" type="image/x-icon">
+</head>
+
+<body class="main bg-[--background] h-full w-full text-white font-['biwan']"> 
+    <nav  class="nav flex items-center justify-around py-5 bg-[--background] sticky top-0 z-10">
+        <h1 class="text-2xl font-extrabold text-[--text]">&lt;/&gt; Biwan Shrestha </h1>
+        <div class="menu flex items-center text-center text-gray-500 space-x-3 lg:hidden">
+            <img id="hamburger" class="h-8" src="svg/menu.svg" alt="">
+        </div>
+        <div class="menus hidden lg:block">
+            <ul class="expand flex space-x-5">
+                <a class="focus:text-[--salmon]" href="#home"> <li class=" cursor-pointer  hover:text-[--salmon] ">Home <span id="line1" class="line"></span>
+                    <span id="line2" class="line"></span>
+                </li></a>
+                <a class="focus:text-[--salmon]" href="#about"> <li class=" cursor-pointer  hover:text-[--salmon] ">About<span id="line1" class="line"></span>
+                    <span id="line2" class="line"></span>
+                </li></a>
+                <a class="focus:text-[--salmon]" href="#resume">  <li class=" cursor-pointer  hover:text-[--salmon] ">Resume<span id="line1" class="line"></span>
+                    <span id="line2" class="line"></span>
+                </li></a>
+                <a class="focus:text-[--salmon]" href="#contactme"> <li class=" cursor-pointer  hover:text-[--salmon] ">Contact<span id="line1" class="line"></span>
+                    <span id="line2" class="line"></span>
+                </li></a>
+                <a class="focus:text-[--salmon]" href="#messageme">
+                    <li class=" cursor-pointer  hover:text-[--salmon] ">Message Me<span id="line1" class="line"></span>
+                        <span id="line2" class="line"></span>
+                    </li>
+                </a>
+               
+            </ul>
+        </div>
+
+    </nav>
+    <div class="sidebar grad z-[10] relative top-0">
+        <img id="close" class="w-6 m-auto" src="svg/close.svg" alt="">
+        <ul class="expand flex flex-col items-center px-10 ">
+            <a class="focus:text-[--salmon] my-4" href="#home"> <li class=" cursor-pointer text-3xl hover:text-[--salmon] ">Home <span id="line1" class="line"></span>
+                <span id="line2" class="line"></span>
+            </li></a>
+            <a class="focus:text-[--salmon] my-4" href="#about"> <li class=" cursor-pointer text-3xl hover:text-[--salmon] ">About<span id="line1" class="line"></span>
+                <span id="line2" class="line"></span>
+            </li></a>
+            <a class="focus:text-[--salmon] my-4" href="#resume">  <li class=" cursor-pointer text-3xl hover:text-[--salmon] ">Resume<span id="line1" class="line"></span>
+                <span id="line2" class="line"></span>
+            </li></a>
+            <a class="focus:text-[--salmon] my-4" href="#contactme"> <li class=" cursor-pointer text-3xl hover:text-[--salmon] ">Contact<span id="line1" class="line"></span>
+                <span id="line2" class="line"></span>
+            </li></a>
+            <a class="focus:text-[--salmon] my-4" href="#messageme">
+                <li class=" cursor-pointer text-3xl hover:text-[--salmon] ">Message Me<span id="line1" class="line"></span>
+                    <span id="line2" class="line"></span>
+            </li></a>
+        </ul>
+
+    </div>
+    <main id="home" class="nav-height flex flex-col-reverse justify-center md:justify-around items-center">
+        <div class="flex justify-center items-center flex-col h-[50vh] text-4xl ">
+            <h1 class="text-[--secondary]">Hello World!</h1>
+            <h2>I'm <span class="text-[--secondary]">Biwan Shrestha</span></h2>
+            <span class="animate-text"></span>
+        </div>
+        <div class="">
+            <img class=" w-[60vw] sm:w-[20vw] rounded-md" src="images/profile1.jpg" alt="">
+        </div>
+
+    </main>
+    <div id="about" class="buttons flex justify-center space-x-3 mt-2">
+
+        <button id="button" onclick="insta()"
+            class=" px-20 py-5 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
+            <div
+                class="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+            <span class="relative z-20">MY INSTAGRAM</span>
+        </button>
+        <button id="button" onclick="linkedin()"
+            class=" px-20 py-5 rounded-full relative bg-via-teal-500 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
+            <div
+                class="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+            <span class="relative z-20">MY LINKEDIN</span>
+        </button>
+
+    </div>
+        <section  class="profile flex flex-col lg:flex-row overflow-hidden">
+            <div class="lol skills w-full md:w-[50%]">
+                <div class="flex space-x-4 items-center px-4 md:space-x-4 ">
+
+                    <img class=" w-[50%] rounded-lg md:hidden" src="images/profile-pic (2).png"
+                        alt="">
+                    <img class="hidden md:block w-[50%]" src="images/profile-pic (2).png" alt="">
+                    <div class="flex flex-col leading-8">
+                        <h2>Name:Biwan Shrestha</h2>
+                        <h2>Job role:Software Developer</h2>
+                        <h2>Address:Balkumari, lalitpur</h2>
+
+                    </div>
+                </div>
+                <h1 class="mt-5 text-center">Skill</h1>
+                <div class="tools flex mt-10 flex-wrap justify-center text-[--text] gap-4 md:w-[100vw] lg:w-full">
+                    <li class="flex flex-col items-center h-[10rem] w-[10rem] justify-center bg-black rounded-lg">
+                        <img class="w-[50px] aspect-auto" src="images/html.png" alt="">
+                        <h3>HTML</h3>
+                        <p>50%</p>
+                    </li>
+                    <li class="flex flex-col items-center h-[10rem] w-[10rem] justify-center bg-black rounded-lg">
+                        <img class="w-[50px]" src="images/css.png" alt="">
+                        <h3>CSS</h3>
+                        <p>50%</p>
+                    </li>
+                    <li class="flex flex-col items-center h-[10rem] w-[10rem] justify-center bg-black rounded-lg"><img
+                            class="w-[50px]" src="images/js.png" alt="">
+                        <h3>JAVASCRIPT</h3>
+                        <p>50%</p>
+                    </li>
+                    <li class="flex flex-col items-center h-[10rem] w-[10rem] justify-center bg-black rounded-lg"><img
+                            class="w-[50px]" src="images/node.png" alt="">
+                        <h3>NODE</h3>
+                        <p>50%</p>
+                    </li>
+                    <li class="flex flex-col items-center h-[10rem] w-[10rem] justify-center bg-black rounded-lg"><img
+                            class="w-[50px]" src="images/tailwind.png" alt="">
+                        <h3>TAILWIND</h3>
+                        <p>50%</p>
+                    </li>
+                    <li class="flex flex-col items-center h-[10rem] w-[10rem] justify-center bg-black rounded-lg"><img
+                            class="w-[50px]" src="images/react.png" alt="">
+                        <h3>REACT</h3>
+                        <p>50%</p>
+                    </li>
+                </div>
+            </div>
+            <div class="lol about mt-10 m-auto px-10 lg:w-[40%] relative">
+                <h1 class="absolute -z-20 text-[5em] text-gray-600 top-[50%] left-[30%] font-extrabold">About</h1>
+                <h1 class="text-4xl text-[--salmon] text-center">About Me</h1>
+                <p class="text-xl text-gray-400 mt-5 lg:text-3xl">Hello! I'm Biwan, a passionate and dedicated front-end developer currently pursuing my Bachelor's degree in CSIT at Tribhuwan University . As a second-year student, I've immersed myself in the world of web development, focusing on creating intuitive and responsive user interfaces. My journey so far has been driven by a love for coding and design, allowing me to develop a solid foundation in HTML, CSS, and JavaScript. I thrive on learning new technologies and frameworks, always eager to enhance my skills and stay updated with the latest industry trends. I'm enthusiastic about turning creative ideas into functional and beautiful web experiences. When I'm not coding, you can find me exploring new design inspirations, collaborating on projects, or participating in tech communities. I'm excited to contribute my growing expertise to innovative projects and continue evolving as a developer.
+
+
+                </p>
+                <ul >
+                    <li class="text-sm lg:text-xl"><span class="text-[--primary]">Profile:</span><span class="text-[--text]">FrontEnd  Developer </span></li>
+                    <li class="text-sm lg:text-xl"><span class="text-[--primary]">Domain:</span><span class="text-[--text]">Software
+                            Developement</span></li>
+                    <li class="text-sm lg:text-xl"><span class="text-[--primary]">Education:</span><span class="text-[--text]">Bachelor of Science in
+                            Computer Science and Information Technology</span></li>
+                    <li class="text-sm lg:text-xl"><span class="text-[--primary]">Language:</span><span class="text-[--text]">English, Hindi,
+                            Nepali</span></li>
+                    <li class="text-sm lg:text-xl"><span class="text-[--primary]">Other Skills:</span><span class="text-[--text]"> Drawing
+                            proficiency, Observational skills, Creativity, Knowledge of art fundamentals, Technical
+                            proficiency, Communication skills, Time management, Adaptability & Attention to detail</span>
+                    </li>
+                    <li id="resume" class="text-sm lg:text-xl"><span class="text-[--primary]">Interest:</span><span class="text-[--text]">Traveling, Travel
+                            Reading Books,Listening Music,Watching Anime,Playing Online Games</span></li>
+
+                </ul>
+            </div>
+        </section>
+    <div  id="resume"   class="resume relative m-auto text-center px-10 md:w-[60%]">
+        <h1 class="absolute -z-20 text-4xl text-gray-600 top-[50%] left-[30%] font-extrabold">Resume</h1>
+        <h1 class="text-[--salmon] text-4xl text-center mt-10">Resume</h1>
+        <p class=" text-sm mt-10 md:text-2xl flex justify-center">Experienced Adobe ColdFusion Developer at Arosys Technologies, proficient in PHP and skilled in jQuery AJAX. Specialized in crafting visually appealing webpages using HTML, CSS, Tailwind, Bootstrap, and Material UI. Possesses a strong foundation in Python, C++, C, and Java, with expertise in SQL. Eager to apply expertise to drive innovative web development projects forward.</p>
+    </div>
+    <div id="education" class="education mt-20">
+        <h1 class="edu edt text-4xl text-[--salmon] text-center">Education</h1>
+        <div class="flex gap-5 justify-center mt-10 flex-col items-center md:flex-row">
+            
+            <div class="edu flex flex-col items-center h-[20rem] w-[20rem] justify-center bg-black rounded-lg">
+                <h1 class="text-4xl text-[--accent] font-extrabold">2079-Running</h1>
+                <h2 class="text-3xl text-[--text] text-center">Bsc CSIT</h2>
+                <p class="text-xl text-gray-500 mt-10">TRIBHUVAN UNIVERSITY</p>
+                <span class="text-sm text-gray-500 mt-5">Grade:Overall 3.45</span>
+            </div>
+        <div class="edu flex flex-col items-center h-[20rem] w-[20rem] justify-center bg-black rounded-lg">
+                <h1 class="text-4xl text-[--accent] font-extrabold">2076-2079</h1>
+            <h2 class="text-3xl text-[--text] text-center">Higher Secondary School</h2>
+            <p class="text-xl text-gray-500 mt-10">NEB</p>
+            <span class="text-sm text-gray-500 mt-5">Grade:3.03</span>
+        </div>
+        </div>
+
+
+    
+ <div id="github" class="github mt-5 px-5 relative">
+    <img class="m-auto object-cover h-[500px] w-full " src="images/github.png" alt="">
+    <h1 class="absolute top-[50%] left-[10%]  z-10 text-black  flex items-center text-xl lg:left-[40%]">Here's My <button onclick="github()"
+        class=" px-20  ml-3 py-5 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
+        <div
+            class="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+        <span class="relative z-20">MY GITHUB</span>
+    </button></h1>
+    <h4 class="absolute top-[60%] left-[10%] z-10 text-[--text]  flex items-center text-2xl lg:left-[35%]">
+        I love to code &amp; create awesome artworks.
+    </h4>
+    
+ </div>
+ <div class="contactme mt-20">
+    <h1 class="text-center m-auto text-4xl text-[--salmon]">Contact me</h1>
+    <p class="text-gray-500 m-auto text-center">Below are the details to reach out to me!</p>
+    <div class="tools flex mt-10 flex-wrap justify-center text-[--text] gap-4 md:w-[100vw] lg:w-full">
+        <li class="box flex flex-col items-center h-[10rem] w-[20rem] justify-center bg-black rounded-lg">
+            <img class="w-[50px] aspect-auto invert" src="images/loca.png" alt="">
+            <h3>Address</h3>
+            <p>Balkumari, Lalitpur</p>
+        </li>
+        <li class="box flex flex-col items-center h-[10rem] w-[20rem] justify-center bg-black rounded-lg">
+            <img class="w-[50px]" src="images/phone.png" alt="">
+            <h3>Contact NUmber</h3>
+            <p>+977 9849966860</p>
+        </li>
+        <li class="box flex flex-col items-center h-[10rem] w-[20rem] justify-center bg-black rounded-lg"><img
+                class="w-[50px]" src="images/mail.png" alt="">
+            <h3>Email Address</h3>
+            <p>biwanshrestha77@gmail.com</p>
+        </li>
+        <li class="box flex flex-col items-center h-[10rem] w-[20rem] justify-center bg-black rounded-lg"><img
+                class="w-[50px]" src="images/globe.png" alt="">
+            <h3>Download Resume</h3>
+            <p>Resumelink</p>
+        </li>
+        
+    </div>
+ </div>
+
+ <div class="findme flex items-center justify-center space-x-5 mt-10">
+    <h1>Find me on</h1>
+    <a onclick="github()" class="round flex items-center justify-center text-[--salmon] hover:text-white" href=""><i class="ri-github-fill text-3xl"></i></a>
+    <a onclick="insta()" class="round flex items-center justify-center text-[--salmon] hover:text-white" href=""><i class="ri-instagram-line text-3xl"></i></a>
+    <a onclick="facebook()" class="round flex items-center justify-center text-[--salmon] hover:text-white" href=""><i class="ri-facebook-circle-fill text-3xl"></i></a>
+ </div>
+ <div class="cop text-end px-10 pb-5 my-5">
+    Copyright &copy; 2024 biwanshrestha14.com.np
+ </div>
+ <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+ <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+ 
+ <script src="script.js"></script>
+ <!-- <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script> -->
+</body>
+
+</html>
