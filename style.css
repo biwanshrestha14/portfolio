@@ -77,8 +77,8 @@ a>li:hover #line2 {
     
 }
 .sidebar{
-    background: rgb(12,84,101);
-    background: linear-gradient(90deg, rgba(12,84,101,1) 30%, rgba(2,29,42,1) 89%);
+    background: rgb(0, 0, 0);
+   
 border-radius: 5%;
 
 }

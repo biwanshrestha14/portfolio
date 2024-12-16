@@ -1,7 +1,7 @@
 
 var typed = new Typed(".animate-text",{
-    strings : ["Programmer", "Designer", "Web Developer"],
-    typeSpeed : 50,
+    strings : ["Programmer" , "Web Developer"],
+    typeSpeed : 100,
     backSpeed : 50,
     loop : true
   })
@@ -66,14 +66,14 @@ gsap.from('.box',{
     scrollTrigger:{
       trigger:'.box',
       start:'top 90%',
-      end:'top 70%',
+      end:'top 90%',
       // markers:true,
       scrub:2
     },
     stagger:0.5,
   })
 gsap.from('.lol',{
-    x:1000,
+    x:500,
     opacity:0,
     stagger:0.5,
     scrollTrigger:{
