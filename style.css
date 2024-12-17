@@ -24,6 +24,12 @@ html{
 .nav-height{
     height: 100vh;
 }
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* overflow: hidden; */
+}
 
 @font-face {                                                                                                                
     font-family: biwan;
@@ -157,3 +163,22 @@ a>li:hover #line2 {
         transform: translate(100px, 100px); /* Move diagonally */
     }
 }
+.cursor-follower {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondary);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    z-index: 1000;
+  }
+  
+  /* Smaller follower */
+  .cursor-follower.small {
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary) /* Different color */
+  }
+  

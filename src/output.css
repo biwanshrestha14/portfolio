@@ -658,11 +658,6 @@ video {
   aspect-ratio: auto;
 }
 
-.size-20 {
-  width: 5rem;
-  height: 5rem;
-}
-
 .size-40 {
   width: 10rem;
   height: 10rem;
@@ -999,16 +994,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:size-\[500px\] {
-    width: 500px;
-    height: 500px;
-  }
-
-  .sm\:size-\[600px\] {
-    width: 600px;
-    height: 600px;
-  }
-
   .sm\:size-\[400px\] {
     width: 400px;
     height: 400px;
