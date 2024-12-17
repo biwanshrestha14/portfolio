@@ -137,7 +137,6 @@ a>li:hover #line2 {
 }
 .ball2 {
     position: absolute;
-
     background-color: red;
     border-radius: 50%;
     filter: blur(25px);
