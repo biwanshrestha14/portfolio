@@ -127,7 +127,6 @@ a>li:hover #line2 {
 
 .ball1 {
     position: absolute;
-    height: 30rem;
     width: 30rem;
     background-color: red;
     border-radius: 50%;
