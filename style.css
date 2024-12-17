@@ -127,39 +127,29 @@ a>li:hover #line2 {
 
 .ball1 {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    height: 30rem;
+    width: 30rem;
     background-color: red;
     border-radius: 50%;
     filter: blur(25px);
     animation: moveDiagonal 15s infinite ease-in-out;
-    bottom: 100px;
-    right: 200px;
+    bottom: 300px;
+    right: 100px;
 }
 .ball2 {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    height: 30rem;
+    width: 30rem;
     background-color: red;
     border-radius: 50%;
     filter: blur(25px);
     animation: moveDiagonal 15s infinite ease-in-out;
-    bottom: 100px;
+    bottom: 200px;
     left: 200px;
     z-index: -1;
+    mix-blend-mode: difference;
 }
-.ball3 {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background-color: red;
-    border-radius: 50%;
-    filter: blur(25px);
-    animation: moveDiagonal 15s infinite ease-in-out;
-    bottom: 100px;
-    right: 200px;
-   
-}
+
 
 /* Keyframes for diagonal movement */
 @keyframes moveDiagonal {
@@ -167,6 +157,6 @@ a>li:hover #line2 {
         transform: translate(0, 0); /* Original position */
     }
     50% {
-        transform: translate(200px, 200px); /* Move diagonally */
+        transform: translate(100px, 100px); /* Move diagonally */
     }
 }
