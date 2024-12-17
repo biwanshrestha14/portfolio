@@ -132,10 +132,10 @@ a>li:hover #line2 {
     background-color: red;
     border-radius: 50%;
     filter: blur(25px);
-    animation: moveDiagonal 15s infinite ease-in-out;
+    animation: moveDiagonal 10s infinite ease-in-out;
     bottom: 300px;
     right: 100px;
-    z-index: -1;
+    z-index: -10;
 }
 .ball2 {
     position: absolute;
@@ -144,7 +144,7 @@ a>li:hover #line2 {
     background-color: red;
     border-radius: 50%;
     filter: blur(25px);
-    animation: moveDiagonal 15s infinite ease-in-out;
+    animation: moveDiagonal 10s infinite ease-in-out;
     bottom: 200px;
     left: 200px;
     z-index: -1;
