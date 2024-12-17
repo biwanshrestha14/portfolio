@@ -663,6 +663,11 @@ video {
   height: 5rem;
 }
 
+.size-40 {
+  width: 10rem;
+  height: 10rem;
+}
+
 .h-8 {
   height: 2rem;
 }
@@ -994,29 +999,19 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:size-16 {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  .sm\:size-60 {
-    width: 15rem;
-    height: 15rem;
-  }
-
-  .sm\:size-80 {
-    width: 20rem;
-    height: 20rem;
-  }
-
-  .sm\:size-\[\] {
-    width: ;
-    height: ;
-  }
-
   .sm\:size-\[500px\] {
     width: 500px;
     height: 500px;
+  }
+
+  .sm\:size-\[600px\] {
+    width: 600px;
+    height: 600px;
+  }
+
+  .sm\:size-\[400px\] {
+    width: 400px;
+    height: 400px;
   }
 
   .sm\:w-\[20vw\] {
