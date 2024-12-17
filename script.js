@@ -1,4 +1,19 @@
 
+window.onload=function(){
+    if(localStorage.getItem('theme')){
+        document.body.classList.add("darkmode")
+    }
+}
+function changegar(){
+document.body.classList.toggle("darkmode")
+
+if(document.body.classList.contains('darkmode')){
+    localStorage.setItem("theme",'dark')
+}
+else
+    localStorage.removeItem('theme')
+}
+
 var typed = new Typed(".animate-text",{
     strings : ["Programmer" , "Web Developer"],
     typeSpeed : 100,

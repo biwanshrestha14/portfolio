@@ -1,10 +1,22 @@
 :root{
+    --text:#03141c;
+    --background:#bdd4da;
+    --primary:#8ba3f1;
+    --secondary:#1da4e4;
+    --salmon:#4b4ce9;
+    --accent:#salmon;
+    --cb:white;
+}
+.darkmode{
+
 --text:#f9fdfe;
  --background:#03141c;
  --primary:#1da4e4;
  --secondary:#8ba3f1;
  --salmon:salmon;
  --accent:#4b4ce9;
+ --cb:black;
+
 }
 html{
     scroll-behavior: smooth;
@@ -26,7 +38,7 @@ a>li{
 .line{
     display: inline-block;
     height: 2px;
-    background-color: var(--accent);
+    background-color: var(--secondary);
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -61,8 +73,11 @@ a>li:hover #line2 {
 .sidebar{
         position: absolute;
         left: -120%;
-        transition: all ease 0.5s;
+        transition: all ease 1s;
         padding: 0px;
+        height: 100%;
+        background-color: var(--cb);
+
 }
 .cursor{
     height: 50px;
@@ -76,9 +91,82 @@ a>li:hover #line2 {
     z-index: 100;
     
 }
-.sidebar{
-    background: rgb(0, 0, 0);
-   
-border-radius: 5%;
 
+#themeswitch{
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--cb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50px;
+    right: 20px;
+}
+
+#themeswitch svg{
+    fill:var(--primary)
+}
+#themeswitch svg:last-child{
+    display: none;
+}
+.darkmode #themeswitch svg:first-child{
+    display: none;
+}
+.darkmode #themeswitch svg:last-child{
+    display: block;
+}
+.location{
+    fill: var(--text)
+}
+#close{
+    fill:var(--text)
+}
+
+.ball1 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: red;
+    border-radius: 50%;
+    filter: blur(25px);
+    animation: moveDiagonal 15s infinite ease-in-out;
+    bottom: 100px;
+    right: 200px;
+}
+.ball2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: red;
+    border-radius: 50%;
+    filter: blur(25px);
+    animation: moveDiagonal 15s infinite ease-in-out;
+    bottom: 100px;
+    left: 200px;
+    z-index: -1;
+}
+.ball3 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: red;
+    border-radius: 50%;
+    filter: blur(25px);
+    animation: moveDiagonal 15s infinite ease-in-out;
+    bottom: 100px;
+    right: 200px;
+   
+}
+
+/* Keyframes for diagonal movement */
+@keyframes moveDiagonal {
+    0%, 100% {
+        transform: translate(0, 0); /* Original position */
+    }
+    50% {
+        transform: translate(200px, 200px); /* Move diagonally */
+    }
 }
