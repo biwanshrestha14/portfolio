@@ -133,7 +133,7 @@ a>li:hover #line2 {
     animation: moveDiagonal 10s infinite ease-in-out;
     bottom: 300px;
     right: 100px;
-    z-index: -1;
+    /* z-index: -1; */
 }
 .ball2 {
     position: absolute;
