@@ -33,7 +33,7 @@ body{
 
 @font-face {                                                                                                                
     font-family: biwan;
-    src: url('./659dbdfd5a080be8d348316e_PP\ Neue\ Machina\ Inktrap\ Medium.woff');
+    src: url('../assets/fonts/659dbdfd5a080be8d348316e_PP\ Neue\ Machina\ Inktrap\ Medium.woff');
 }
 a>li{
     text-decoration: none;
@@ -77,13 +77,47 @@ a>li:hover #line2 {
     background-color: #000000;
 }
 .sidebar{
-        position: absolute;
-        left: -120%;
-        transition: all ease 1s;
-        padding: 0px;
-        height: 100%;
-        background-color: var(--cb);
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--cb);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: all ease 0.4s;
+    overflow-y: auto;
+    z-index: 100;
+    border-right: 1px solid rgba(128, 128, 128, 0.15);
+}
 
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.sidebar-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--cb);
+    color: var(--text);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.sidebar-social-icon:hover {
+    transform: translateY(-3px);
+    background-color: var(--salmon);
+    color: white;
 }
 .cursor{
     height: 50px;
@@ -94,35 +128,52 @@ a>li:hover #line2 {
     position: absolute;
     transition: all linear 0.5s;
     mix-blend-mode: difference;
-    z-index: 100;
+    z-index: 9;
     
 }
 
 #themeswitch{
-    height: 50px;
-    width: 50px;
     padding: 0;
-    border-radius: 50%;
-    background-color: var(--cb);
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 55px;
-    right: 20px;
 }
 
 #themeswitch svg{
-    fill:var(--primary)
+    fill: var(--primary);
 }
+
+#themeswitch svg:first-child{
+    display: block;
+}
+
 #themeswitch svg:last-child{
     display: none;
 }
+
 .darkmode #themeswitch svg:first-child{
     display: none;
 }
+
 .darkmode #themeswitch svg:last-child{
     display: block;
+}
+
+.nav-controls {
+    background-color: var(--cb);
+    transition: all 0.3s ease;
+    border-color: rgba(128, 128, 128, 0.2);
+}
+
+.darkmode .nav-controls {
+    border-color: rgba(128, 128, 128, 0.4);
+}
+
+/* Hover effects for nav controls */
+.nav-controls button:hover, 
+.nav-controls .menu:hover {
+    background-color: rgba(128, 128, 128, 0.1);
 }
 .location{
     fill: var(--text)
@@ -172,7 +223,7 @@ a>li:hover #line2 {
     pointer-events: none;
     transform: translate(-50%, -50%);
     mix-blend-mode: difference;
-    z-index: 1000;
+    z-index: 99;
   }
   
   /* Smaller follower */
@@ -181,4 +232,48 @@ a>li:hover #line2 {
     height: 10px;
     background-color: var(--primary) /* Different color */
   }
+  
+.sidebar-theme-toggle svg:first-child {
+    display: block;
+}
+
+.sidebar-theme-toggle svg:last-child {
+    display: none;
+}
+
+.darkmode .sidebar-theme-toggle svg:first-child {
+    display: none;
+}
+
+.darkmode .sidebar-theme-toggle svg:last-child {
+    display: block;
+}
+
+.nav {
+    z-index: 999 !important;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.nav.scrolled {
+    background-color: rgba(189, 212, 218, 0.85); /* Lighter background when scrolled */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.darkmode .nav {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.darkmode .nav.scrolled {
+    background-color: rgba(3, 20, 28, 0.85); /* Darker background when scrolled */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
   
