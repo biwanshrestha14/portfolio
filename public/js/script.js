@@ -39,13 +39,19 @@ animateFollowers();
 
 // Apply mobile menu height calculations 
 document.addEventListener('DOMContentLoaded', function () {
-  // Set initial theme based on localStorage
-  if (localStorage.getItem('theme')) {
+  // Always start with dark mode unless explicitly set to light mode
+  if (localStorage.getItem('theme') === 'light') {
+    // Light mode if specifically set
+    toggleSvgIcons(false);
+  } else {
+    // Default to dark mode
     document.body.classList.add("darkmode");
     document.documentElement.classList.add('dark');
-    toggleSvgIcons(true); // Show dark mode icons
-  } else {
-    toggleSvgIcons(false); // Show light mode icons
+    toggleSvgIcons(true);
+    // Set dark theme in localStorage if not already set
+    if (!localStorage.getItem('theme')) {
+      localStorage.setItem("theme", 'dark');
+    }
   }
 
   // Navbar glassmorphism scroll effect
@@ -68,7 +74,7 @@ function changegar() {
   if (isDarkMode) {
     localStorage.setItem("theme", 'dark');
   } else {
-    localStorage.removeItem('theme');
+    localStorage.setItem("theme", 'light'); // Store light mode explicitly
   }
 
   // Toggle all SVG icons
