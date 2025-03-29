@@ -18,6 +18,7 @@
  --cb:black;
 
 }
+
 html{
     scroll-behavior: smooth;
 }
@@ -28,7 +29,6 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* overflow: hidden; */
 }
 
 @font-face {                                                                                                                
@@ -170,7 +170,6 @@ a>li:hover #line2 {
     border-color: rgba(128, 128, 128, 0.4);
 }
 
-/* Hover effects for nav controls */
 .nav-controls button:hover, 
 .nav-controls .menu:hover {
     background-color: rgba(128, 128, 128, 0.1);
@@ -204,14 +203,12 @@ a>li:hover #line2 {
   
 }
 
-
-/* Keyframes for diagonal movement */
 @keyframes moveDiagonal {
     0%, 100% {
-        transform: translate(0, 0); /* Original position */
+        transform: translate(0, 0); 
     }
     50% {
-        transform: translate(100px, 100px); /* Move diagonally */
+        transform: translate(100px, 100px); 
     }
 }
 .cursor-follower {
@@ -226,11 +223,10 @@ a>li:hover #line2 {
     z-index: 99;
   }
   
-  /* Smaller follower */
-  .cursor-follower.small {
+.cursor-follower.small {
     width: 10px;
     height: 10px;
-    background-color: var(--primary) /* Different color */
+    background-color: var(--primary) 
   }
   
 .sidebar-theme-toggle svg:first-child {
@@ -256,24 +252,24 @@ a>li:hover #line2 {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
     transition: all 0.3s ease;
 }
 
 .nav.scrolled {
-    background-color: rgba(189, 212, 218, 0.85); /* Lighter background when scrolled */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background-color: rgba(189, 212, 218, 0.85); 
+    box-shadow: none;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
 }
 
 .darkmode .nav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
 }
 
 .darkmode .nav.scrolled {
-    background-color: rgba(3, 20, 28, 0.85); /* Darker background when scrolled */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    background-color: rgba(3, 20, 28, 0.85); 
+    box-shadow: none;
 }
   
