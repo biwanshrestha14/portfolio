@@ -120,7 +120,7 @@ var typed = new Typed(".animate-text", {
 })
 function insta() {
   // Open Google in a new tab/window
-  window.open("https://www.instagram.com/seekingwisdom.biwan/", "_blank");
+  window.open("https://www.instagram.com/beewan_derer/", "_blank");
 }
 function linkedin() {
   // Open Google in a new tab/window
