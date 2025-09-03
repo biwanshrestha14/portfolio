@@ -1,80 +1,12 @@
-# Biwan Shrestha - Portfolio Website
+# React + Vite
 
-A personal portfolio website showcasing skills, projects, and professional information.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Project Structure
+Currently, two official plugins are available:
 
-```
-portfolio/
-├── public/                  # Static assets and compiled files
-│   ├── assets/              # All media assets
-│   │   ├── fonts/           # Custom font files
-│   │   ├── images/          # Image assets
-│   │   ├── icons/           # Icons and SVGs
-│   │   └── docs/            # Documents like CV/resume
-│   ├── css/                 # Compiled and static CSS files
-│   └── js/                  # JavaScript files
-├── src/                     # Source files
-│   ├── components/          # Reusable components (for future use)
-│   ├── styles/              # Source CSS files (like Tailwind input)
-│   ├── utils/               # Utility functions (for future use)
-│   └── data/                # Data files (for future use)
-├── index.html               # Main HTML file
-├── package.json             # Project dependencies and scripts
-├── tailwind.config.js       # Tailwind CSS configuration
-└── postcss.config.js        # PostCSS configuration
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Development
+## Expanding the ESLint configuration
 
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm or pnpm
-
-### Installation
-
-1. Clone the repository
-   ```
-   git clone <repository-url>
-   cd portfolio
-   ```
-
-2. Install dependencies
-   ```
-   npm install
-   # or
-   pnpm install
-   ```
-
-### Running the project
-
-1. Start the development server
-   ```
-   npm run dev
-   # or
-   pnpm dev
-   ```
-
-2. Open `index.html` in your browser
-
-### Building for production
-
-1. Build the CSS files
-   ```
-   npm run build
-   # or
-   pnpm build
-   ```
-
-## Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- Tailwind CSS
-- GSAP (for animations)
-
-## Contact
-
-Biwan Shrestha - [LinkedIn](#) - [Email](#) 
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
