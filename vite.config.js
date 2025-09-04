@@ -5,11 +5,12 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '', // Empty base for custom domain
+  base: './', // Relative base path for GitHub Pages
   build: {
     assetsInlineLimit: 0, // Disable inlining assets
     outDir: 'dist',
     assetsDir: 'assets',
+    copyPublicDir: true, // Ensure public directory files are copied
     rollupOptions: {
       output: {
         manualChunks: undefined,
