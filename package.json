@@ -6,7 +6,7 @@
   "homepage": "https://www.biwanshrestha.com.np",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && powershell -Command \"copy netlify.toml dist\\netlify.toml; copy vercel.json dist\\vercel.json\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },
