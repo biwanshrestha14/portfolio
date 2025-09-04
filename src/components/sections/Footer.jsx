@@ -1,4 +1,8 @@
 
+import React from 'react'
+// Import CV asset for reliable production linking
+import CV from '../../assets/docs/BiwanCV.pdf'
+
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-background via-card to-muted border-t border-border">
@@ -71,7 +75,7 @@ const Footer = () => {
             </div>
             <h3 className="font-semibold text-card-foreground mb-2">Resume</h3>
             <a
-              href="/src/assets/docs/BiwanCV.pdf"
+              href={CV}
               download
               className="inline-flex items-center text-sm text-primary hover:text-accent transition-colors font-medium"
             >

@@ -1,4 +1,8 @@
 import { ExternalLink, Github } from "lucide-react"
+// Import project images
+import bookstoreImage from "../../assets/images/bookstore.png"
+import todoImage from "../../assets/images/todo.png"
+import passfortImage from "../../assets/images/passfort.png"
 
 const Projects = () => {
   const projects = [
@@ -7,7 +11,7 @@ const Projects = () => {
       title: "Bookstore",
       description:
         "A full-stack literary hub with intuitive search and elegant design, enabling seamless book collection management through a polished, responsive interface.",
-      image: "/src/assets/images/bookstore.png",
+      image: bookstoreImage,
       githubUrl: "https://github.com/biwanshrestha14/Ebon-Stacks",
       technologies: ["React", "Node.js", "MongoDB"],
     },
@@ -16,7 +20,7 @@ const Projects = () => {
       title: "Todo List",
       description:
         "A clean, intuitive task management application built with React that helps users organize their daily responsibilities with modern design patterns.",
-      image: "/src/assets/images/todo.png",
+      image: todoImage,
       githubUrl: "https://github.com/biwanshrestha14/TO-DO-list-app",
       technologies: ["React", "CSS3", "JavaScript"],
     },
@@ -25,7 +29,7 @@ const Projects = () => {
       title: "PassFort Manager",
       description:
         "A sleek password manager with secure storage and intuitive design. Built with React, it features elegant gradients and a user-friendly interface for effortless credential management.",
-      image: "/src/assets/images/passfort.png",
+      image: passfortImage,
       githubUrl: "https://github.com/biwanshrestha14/PassFort-Manager",
       technologies: ["React", "Encryption", "LocalStorage"],
     },
