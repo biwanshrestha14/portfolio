@@ -5,7 +5,7 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // Relative base path for GitHub Pages
+  base: '/portfolio/', // Base path for GitHub Pages
   build: {
     assetsInlineLimit: 0, // Disable inlining assets
     outDir: 'dist',
