@@ -5,7 +5,7 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/portfolio/', // Base path for GitHub Pages
+  base: '/', // Base path for custom domain
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
