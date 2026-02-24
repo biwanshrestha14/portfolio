@@ -23,7 +23,7 @@ const Github = () => {
           </h1>
           
           <button 
-            onClick={() => window.open('https://github.com/yourusername')}
+            onClick={() => window.open('https://github.com/biwanshrestha14')}
             className="px-6 py-3 md:px-10 md:py-4 rounded-full bg-slate-700 text-white text-sm md:text-base hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600 mx-auto mb-6"
           >
             <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
