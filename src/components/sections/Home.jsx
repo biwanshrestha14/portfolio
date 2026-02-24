@@ -12,10 +12,9 @@ const Home = () => {
     const typed = new Typed(typedRef.current, {
       strings: [
   "Full Stack Developer",
-  "Problem-Solver",
-  "Adaptable",
-  "Detail-Oriented",
-  "Persistent"
+      "MERN and Django",
+      "Building Web Apps",
+      "Learning Every Day"
 ]
 ,
       typeSpeed: 100,
