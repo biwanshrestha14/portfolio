@@ -16,6 +16,18 @@ const Navbar = ({ toggleTheme, currentTheme, currentPage, setCurrentPage }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   // IntersectionObserver to track which homepage section is currently in view
   useEffect(() => {
     if (currentPage !== 'home') return;
@@ -124,14 +136,14 @@ const Navbar = ({ toggleTheme, currentTheme, currentPage, setCurrentPage }) => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className={`text-lg md:text-xl font-black tracking-widest hover:opacity-85 transition-opacity flex items-center gap-1.5 ${
-                isDark ? 'text-white' : 'text-zinc-900'
+                isDark ? 'text-white' : 'text-orange-950'
               }`}
             >
-              <span className="text-cyan-500 font-mono">&lt;</span>
+              <span className={`font-mono ${isDark ? 'text-cyan-500' : 'text-orange-500'}`}>&lt;</span>
               <span>BIWAN</span>
-              <span className="text-purple-500 font-mono font-bold">/</span>
+              <span className={`font-mono font-bold ${isDark ? 'text-purple-500' : 'text-amber-500'}`}>/</span>
               <span>SHRESTHA</span>
-              <span className="text-cyan-500 font-mono">&gt;</span>
+              <span className={`font-mono ${isDark ? 'text-cyan-500' : 'text-orange-500'}`}>&gt;</span>
             </a>
           </Magnetic>
 
@@ -149,17 +161,17 @@ const Navbar = ({ toggleTheme, currentTheme, currentPage, setCurrentPage }) => {
                         onClick={(e) => handleLinkClick(e, link)}
                         className={`text-xs font-mono tracking-widest uppercase transition-colors relative py-2 ${
                           isActive
-                            ? 'text-cyan-500 font-bold'
+                            ? isDark ? 'text-cyan-500 font-bold' : 'text-orange-600 font-bold'
                             : isDark
                               ? 'text-zinc-400 hover:text-white'
-                              : 'text-zinc-500 hover:text-zinc-900'
+                              : 'text-orange-700 hover:text-orange-950'
                         }`}
                       >
                         {link.name}
                         {isActive && (
                           <motion.span 
                             layoutId="activeIndicator"
-                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500 rounded" 
+                            className={`absolute bottom-0 left-0 right-0 h-0.5 rounded ${isDark ? 'bg-cyan-500' : 'bg-orange-500'}`}
                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                           />
                         )}
@@ -180,7 +192,7 @@ const Navbar = ({ toggleTheme, currentTheme, currentPage, setCurrentPage }) => {
                 className={`p-2.5 rounded-full border transition-all cursor-pointer ${
                   isDark
                     ? 'border-white/[0.08] hover:border-white/20 bg-zinc-900/50 hover:bg-zinc-900 text-zinc-400 hover:text-white'
-                    : 'border-zinc-200 hover:border-zinc-400 bg-white hover:bg-zinc-50 text-zinc-500 hover:text-zinc-900'
+                    : 'border-orange-200 hover:border-orange-400 bg-orange-50 hover:bg-orange-100 text-orange-500 hover:text-orange-700'
                 }`}
                 aria-label="Toggle Theme"
               >
@@ -199,23 +211,35 @@ const Navbar = ({ toggleTheme, currentTheme, currentPage, setCurrentPage }) => {
 
           {/* Mobile Menu Button & Theme Toggle */}
           <div className="flex items-center gap-3 lg:hidden">
+            {/* Aesthetic Mobile Theme Switcher */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded-full border ${
+              className={`relative flex items-center w-14 h-8 rounded-full p-1 transition-all duration-300 border cursor-pointer ${
                 isDark
-                  ? 'border-white/[0.08] bg-zinc-900/50 text-zinc-400 hover:text-white'
-                  : 'border-zinc-200 bg-white text-zinc-500 hover:text-zinc-900'
+                  ? 'bg-zinc-900/80 border-white/10 text-zinc-400'
+                  : 'bg-indigo-50/80 border-indigo-150 text-indigo-500'
               }`}
+              aria-label="Toggle Theme"
             >
-              {isDark ? (
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16" fill="currentColor">
+              {/* Sliding Pill */}
+              <motion.div
+                className={`absolute w-6 h-6 rounded-full shadow-md bg-gradient-to-tr transition-transform duration-300 ${
+                  isDark 
+                    ? 'from-cyan-400 to-purple-500 translate-x-6' 
+                    : 'from-amber-400 to-orange-500 translate-x-0'
+                }`}
+                layout
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              />
+              {/* Sun & Moon Icons inside */}
+              <div className="flex justify-between w-full px-1.5 z-10 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" height="12" viewBox="0 -960 960 960" width="12" className={isDark ? 'text-zinc-600' : 'text-white'} fill="currentColor">
                   <path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280Z" />
                 </svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" height="12" viewBox="0 -960 960 960" width="12" className={isDark ? 'text-white' : 'text-indigo-300'} fill="currentColor">
                   <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z" />
                 </svg>
-              )}
+              </div>
             </button>
 
             <button
@@ -270,7 +294,7 @@ const Navbar = ({ toggleTheme, currentTheme, currentPage, setCurrentPage }) => {
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link)}
                     className={`text-2xl font-bold tracking-widest uppercase transition-colors ${
-                      isDark ? 'text-zinc-300 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'
+                      isDark ? 'text-zinc-300 hover:text-white' : 'text-orange-800 hover:text-orange-950'
                     }`}
                   >
                     {link.name}
@@ -278,7 +302,7 @@ const Navbar = ({ toggleTheme, currentTheme, currentPage, setCurrentPage }) => {
                 </motion.li>
               ))}
             </ul>
-            <div className={`text-center text-xs font-mono mt-auto ${isDark ? 'text-zinc-600' : 'text-zinc-400'}`}>
+            <div className={`text-center text-xs font-mono mt-auto ${isDark ? 'text-zinc-600' : 'text-orange-500'}`}>
               © {new Date().getFullYear()} BIWAN SHRESTHA
             </div>
           </motion.div>

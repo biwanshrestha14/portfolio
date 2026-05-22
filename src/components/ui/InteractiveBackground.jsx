@@ -62,7 +62,7 @@ const InteractiveBackground = ({ theme = 'dark' }) => {
 
     const draw = () => {
       // Clear canvas
-      ctx.fillStyle = theme === 'dark' ? '#09090b' : '#ffffff';
+      ctx.fillStyle = theme === 'dark' ? '#09090b' : '#fff8f2';
       ctx.fillRect(0, 0, width, height);
 
       // Smooth mouse lerping

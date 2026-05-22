@@ -1,128 +1,419 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 
-const GridMotion = ({ items = [] }) => {
+const GridMotion = ({ items = [], theme = 'dark' }) => {
   const containerRef = useRef(null);
-  
-  // Mouse coordinates mapped between -0.5 and 0.5 relative to viewport
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [joke, setJoke] = useState(null);
+  const isDark = theme === 'dark';
+
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
 
-  // Soft spring values for natural lag/inertial trailing
-  const springX = useSpring(mouseX, { stiffness: 60, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 60, damping: 20 });
+  const springX = useSpring(mouseX, { stiffness: 55, damping: 22 });
+  const springY = useSpring(mouseY, { stiffness: 55, damping: 22 });
 
-  // Map spring coordinate to translations for various columns (different factors = parallax)
-  const transCol0Y = useTransform(springY, [0, 1], [-80, 80]); // Shifts up/down
-  const transCol1Y = useTransform(springY, [0, 1], [80, -80]); // Moves in opposite direction!
-  const transCol2Y = useTransform(springY, [0, 1], [-140, 140]); // High magnitude parallax
-  const transCol3Y = useTransform(springY, [0, 1], [140, -140]); // High magnitude opposite
-  const transCol4Y = useTransform(springY, [0, 1], [-50, 50]); // Slower drift
+  const transCol0Y = useTransform(springY, [0, 1], [-90, 90]);
+  const transCol1Y = useTransform(springY, [0, 1], [90, -90]);
+  const transCol2Y = useTransform(springY, [0, 1], [-160, 160]);
+  const transCol3Y = useTransform(springY, [0, 1], [160, -160]);
+  const transCol4Y = useTransform(springY, [0, 1], [-60, 60]);
+  const transAllX = useTransform(springX, [0, 1], [-70, 70]);
+  const rotateX = useTransform(springY, [0, 1], [8, -8]);
+  const rotateY = useTransform(springX, [0, 1], [-8, 8]);
 
-  const transAllX = useTransform(springX, [0, 1], [-60, 60]); // Global horizontal drift
+  const jokes = [
+    "my laptop fan sounds like it's about to apply for pilot's license",
+    "404: developer's social life not found",
+    "it's not a bug, it's an undocumented dance move",
+    "git blame: everyone except me, obviously",
+    "npm install happiness... 847 vulnerabilities found",
+    "undefined is not a function (my personality)",
+    "console.log('why is this not working') × 47",
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (!containerRef.current) return;
-      const { innerWidth, innerHeight } = window;
-      // Get cursor position percentage (0 to 1)
-      const x = e.clientX / innerWidth;
-      const y = e.clientY / innerHeight;
-      mouseX.set(x);
-      mouseY.set(y);
+      mouseX.set(e.clientX / window.innerWidth);
+      mouseY.set(e.clientY / window.innerHeight);
     };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
 
-  // Premium editorial portfolio photographs
+  // Curated aesthetic images: nature, neon, dreamy architecture, surrealism
   const defaultImages = [
-    "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=600&auto=format&fit=crop", // Tech Professional
-    "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop", // Macbook Coding
-    "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop", // Cyber Tech
-    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop", // Code editor
-    "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=600&auto=format&fit=crop", // Minimal desk
-    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop", // Matrix code
-    "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop", // Python / JS screen
-    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop", // Abstract cyber mesh
-    "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&auto=format&fit=crop", // Colorful script code
-    "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600&auto=format&fit=crop", // Retro Cyberpunk Gaming
-    "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=600&auto=format&fit=crop", // Hacker setup
-    "https://images.unsplash.com/photo-1534972195531-d756b9bda9f2?q=80&w=600&auto=format&fit=crop", // Code screen neon
-    "https://images.unsplash.com/photo-1510519138101-570d1dca3d66?q=80&w=600&auto=format&fit=crop", // Synthwave sunset vibe
-    "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=600&auto=format&fit=crop", // Neon artwork
-    "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=600&auto=format&fit=crop", // AI Core
+    {
+      url: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=600&auto=format&fit=crop",
+      caption: "where wifi is nonexistent & peace is unlimited"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?q=80&w=600&auto=format&fit=crop",
+      caption: "my productivity when it's raining outside"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1682686580391-615b1f28e5ee?q=80&w=600&auto=format&fit=crop",
+      caption: "loading... loading... still loading"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
+      caption: "me pretending I have my life together"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1494791368093-85217fbbf8de?q=80&w=600&auto=format&fit=crop",
+      caption: "the forest promised free wifi. it lied."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop",
+      caption: "altitude: above my to-do list"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=600&auto=format&fit=crop",
+      caption: "aurora borealis? in this economy?"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=600&auto=format&fit=crop",
+      caption: "when the vibe is immaculate but the deadline is tomorrow"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=600&auto=format&fit=crop",
+      caption: "stardust behavior"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1484950763426-56b5bf172dbb?q=80&w=600&auto=format&fit=crop",
+      caption: "the dream: waking up looking like this"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1475688621402-4257c812d6db?q=80&w=600&auto=format&fit=crop",
+      caption: "sun and 0 responsibilities"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=600&auto=format&fit=crop",
+      caption: "a mood. a whole entire mood."
+    },
+    {
+      url: "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=600&auto=format&fit=crop",
+      caption: "when you fix one bug and 3 more appear 🐛"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?q=80&w=600&auto=format&fit=crop",
+      caption: "colors have never done anything wrong"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=600&auto=format&fit=crop",
+      caption: "out of office. permanently."
+    },
   ];
 
-  const galleryImages = items.length > 0 ? items : defaultImages;
+  const galleryItems = items.length > 0 ? items : defaultImages;
 
-  // Split images into 5 columns
   const cols = [
-    galleryImages.slice(0, 3),
-    galleryImages.slice(3, 6),
-    galleryImages.slice(6, 9),
-    galleryImages.slice(9, 12),
-    galleryImages.slice(12, 15),
+    galleryItems.slice(0, 3),
+    galleryItems.slice(3, 6),
+    galleryItems.slice(6, 9),
+    galleryItems.slice(9, 12),
+    galleryItems.slice(12, 15),
   ];
 
   const colTransforms = [transCol0Y, transCol1Y, transCol2Y, transCol3Y, transCol4Y];
 
+  const handleCardClick = (idx) => {
+    setJoke(jokes[idx % jokes.length]);
+    setTimeout(() => setJoke(null), 3500);
+  };
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[600px] bg-zinc-950 overflow-hidden border border-white/[0.04] rounded-3xl"
+      className="relative w-full overflow-hidden rounded-3xl"
+      style={{
+        height: '640px',
+        background: isDark
+          ? 'linear-gradient(135deg, #0a0a0f 0%, #0d0d1a 50%, #0a0f0d 100%)'
+          : 'linear-gradient(135deg, #fff7ed 0%, #fff1e6 55%, #fffbf5 100%)',
+        border: isDark
+          ? '1px solid rgba(255,255,255,0.05)'
+          : '1px solid rgba(15,23,42,0.08)',
+        fontFamily: "'DM Mono', 'Fira Mono', monospace",
+      }}
     >
-      {/* Decorative ambient background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      {/* Grain texture overlay */}
+      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+        <filter id="grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
+          <feBlend in="SourceGraphic" mode="overlay" result="blend" />
+          <feComposite in="blend" in2="SourceGraphic" operator="in" />
+        </filter>
+      </svg>
+      <div
+        style={{
+          position: 'absolute', inset: 0, zIndex: 1,
+          background: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E")',
+          backgroundSize: '200px 200px', opacity: 0.6, mixBlendMode: 'overlay', pointerEvents: 'none',
+        }}
+      />
 
-      {/* Parallax Moving Grid */}
-      <motion.div 
-        style={{ x: transAllX }}
-        className="absolute inset-0 flex justify-center items-center gap-6 w-[120%] h-[120%] -left-[10%] -top-[10%] pointer-events-none"
+      {/* Subtle dot grid */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+        backgroundImage: isDark
+          ? 'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)'
+          : 'radial-gradient(circle, rgba(15,23,42,0.05) 1px, transparent 1px)',
+        backgroundSize: '28px 28px',
+      }} />
+
+      {/* Color blobs */}
+      <div style={{
+        position: 'absolute', top: '10%', left: '20%', width: 320, height: 320, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)',
+        filter: 'blur(60px)', zIndex: 1, pointerEvents: 'none', animation: 'drift1 12s ease-in-out infinite',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: '15%', right: '15%', width: 280, height: 280, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(16,185,129,0.10) 0%, transparent 70%)',
+        filter: 'blur(50px)', zIndex: 1, pointerEvents: 'none', animation: 'drift2 15s ease-in-out infinite',
+      }} />
+      <div style={{
+        position: 'absolute', top: '50%', right: '30%', width: 200, height: 200, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(244,114,182,0.08) 0%, transparent 70%)',
+        filter: 'blur(40px)', zIndex: 1, pointerEvents: 'none', animation: 'drift3 18s ease-in-out infinite',
+      }} />
+
+      <style>{`
+        @keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-30px)} }
+        @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,25px)} }
+        @keyframes drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(15px,-20px)} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+      `}</style>
+
+      {/* Parallax grid */}
+      <motion.div
+        style={{ x: transAllX, rotateX, rotateY, perspective: 1200 }}
+        className="absolute flex justify-center items-center gap-5"
+        sx={{ transformStyle: 'preserve-3d' }}
+        css={{
+          inset: 0, width: '125%', height: '125%',
+          left: '-12.5%', top: '-12.5%', pointerEvents: 'none',
+          zIndex: 2, display: 'flex',
+        }}
+        style={{
+          x: transAllX,
+          position: 'absolute',
+          inset: 0,
+          width: '125%',
+          height: '125%',
+          left: '-12.5%',
+          top: '-12.5%',
+          pointerEvents: 'none',
+          zIndex: 2,
+          display: 'flex',
+          gap: '20px',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
         {cols.map((colImages, colIdx) => (
           <motion.div
             key={colIdx}
-            style={{ y: colTransforms[colIdx] }}
-            className="flex flex-col gap-6 w-full max-w-[200px]"
+            style={{ y: colTransforms[colIdx], display: 'flex', flexDirection: 'column', gap: '20px', width: '100%', maxWidth: '195px' }}
           >
-            {colImages.map((imgUrl, imgIdx) => (
-              <div
-                key={imgIdx}
-                className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden bg-zinc-900 border border-white/[0.08] shadow-2xl hover:border-cyan-500/30 transition-colors pointer-events-auto cursor-pointer group"
-              >
-                <img
-                  src={imgUrl}
-                  alt={`Gallery Photo ${colIdx}-${imgIdx}`}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  loading="lazy"
-                />
-                
-                {/* Tech scan lines glow */}
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <span className="text-[9px] font-mono text-cyan-400 tracking-widest uppercase">SCAN_SEC_{colIdx}{imgIdx}</span>
+            {colImages.map((item, imgIdx) => {
+              const cardId = `${colIdx}-${imgIdx}`;
+              const imgUrl = typeof item === 'string' ? item : item.url;
+              const caption = typeof item === 'string' ? null : item.caption;
+
+              return (
+                <div
+                  key={imgIdx}
+                  onClick={() => handleCardClick(colIdx * 3 + imgIdx)}
+                  onMouseEnter={() => setHoveredCard(cardId)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '3/4',
+                    width: '100%',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    background: isDark ? '#1a1a2e' : '#fffaf5',
+                    border: hoveredCard === cardId
+                      ? (isDark
+                        ? '1px solid rgba(99,102,241,0.5)'
+                        : '1px solid rgba(249,115,22,0.45)')
+                      : (isDark
+                        ? '1px solid rgba(255,255,255,0.06)'
+                        : '1px solid rgba(15,23,42,0.08)'),
+                    boxShadow: hoveredCard === cardId
+                      ? (isDark
+                        ? '0 0 24px rgba(99,102,241,0.2), 0 20px 60px rgba(0,0,0,0.6)'
+                        : '0 0 20px rgba(249,115,22,0.15), 0 18px 40px rgba(15,23,42,0.12)')
+                      : (isDark
+                        ? '0 8px 32px rgba(0,0,0,0.4)'
+                        : '0 10px 24px rgba(15,23,42,0.12)'),
+                    pointerEvents: 'all',
+                    cursor: 'pointer',
+                    transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+                    transform: hoveredCard === cardId ? 'scale(1.03)' : 'scale(1)',
+                  }}
+                >
+                  <img
+                    src={imgUrl}
+                    alt={caption || `Photo ${colIdx}-${imgIdx}`}
+                    style={{
+                      width: '100%', height: '100%', objectFit: 'cover',
+                      transition: 'transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)',
+                      transform: hoveredCard === cardId ? 'scale(1.1)' : 'scale(1)',
+                    }}
+                    loading="lazy"
+                  />
+
+                  {/* Hover caption */}
+                  {caption && (
+                    <div style={{
+                      position: 'absolute', inset: 0,
+                      background: isDark
+                        ? 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)'
+                        : 'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.35) 50%, transparent 100%)',
+                      opacity: hoveredCard === cardId ? 1 : 0,
+                      transition: 'opacity 0.35s ease',
+                      display: 'flex', alignItems: 'flex-end', padding: '14px',
+                    }}>
+                      <p style={{
+                        color: isDark ? '#e2e8f0' : '#7c2d12',
+                        fontSize: '10px',
+                        lineHeight: 1.5,
+                        fontFamily: "'DM Mono', monospace",
+                        letterSpacing: '0.02em',
+                        margin: 0,
+                        opacity: hoveredCard === cardId ? 1 : 0,
+                        transform: hoveredCard === cardId ? 'translateY(0)' : 'translateY(8px)',
+                        transition: 'opacity 0.35s ease 0.05s, transform 0.35s ease 0.05s',
+                      }}>
+                        {caption}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Corner tag */}
+                  <div style={{
+                    position: 'absolute', top: 10, right: 10,
+                    background: isDark ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.8)',
+                    backdropFilter: 'blur(8px)',
+                    borderRadius: '6px',
+                    padding: '3px 7px',
+                    fontSize: '8px',
+                    fontFamily: 'monospace',
+                    color: isDark ? 'rgba(99,102,241,0.9)' : 'rgba(234,88,12,0.9)',
+                    letterSpacing: '0.1em',
+                    opacity: hoveredCard === cardId ? 1 : 0,
+                    transition: 'opacity 0.3s ease',
+                  }}>
+                    click me
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Cinematic vignette / dark overlays to fade out the borders */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_20%,#09090b_90%)]" />
-      
-      {/* Editorial text header inside the grid */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 pointer-events-none select-none z-10">
-        <span className="text-xs font-mono tracking-[0.3em] text-cyan-400 uppercase bg-zinc-950/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/[0.08]">
-          Grid Motion Portal
-        </span>
-        <h3 className="text-3xl md:text-5xl font-black text-white mt-4 tracking-tighter drop-shadow-lg">
-          CREATIVE PLAYGROUND
-        </h3>
-        <p className="text-zinc-400 text-xs md:text-sm font-mono mt-2 max-w-sm drop-shadow-md">
-          Interact by moving your cursor to skew the perspective.
-        </p>
+      {/* Vignette overlay */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none',
+        background: isDark
+          ? 'radial-gradient(ellipse at center, transparent 25%, rgba(10,10,15,0.7) 70%, rgba(10,10,15,0.95) 100%)'
+          : 'radial-gradient(ellipse at center, transparent 25%, rgba(255,255,255,0.6) 70%, rgba(255,255,255,0.95) 100%)',
+      }} />
+
+      {/* Top edge fade */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '120px', zIndex: 4, pointerEvents: 'none',
+        background: isDark
+          ? 'linear-gradient(to bottom, rgba(10,10,15,0.9) 0%, transparent 100%)'
+          : 'linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, transparent 100%)',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px', zIndex: 4, pointerEvents: 'none',
+        background: isDark
+          ? 'linear-gradient(to top, rgba(10,10,15,0.9) 0%, transparent 100%)'
+          : 'linear-gradient(to top, rgba(255,255,255,0.9) 0%, transparent 100%)',
+      }} />
+
+      {/* Joke popup */}
+      <AnimatePresence>
+        {joke && (
+          <motion.div
+            initial={{ opacity: 0, y: 16, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+            style={{
+              position: 'absolute', right: 24, bottom: 56, zIndex: 10,
+              pointerEvents: 'none',
+              background: isDark ? 'rgba(10,10,20,0.92)' : 'rgba(255,255,255,0.92)',
+              backdropFilter: 'blur(16px)',
+              border: isDark
+                ? '1px solid rgba(99,102,241,0.3)'
+                : '1px solid rgba(234,88,12,0.25)',
+              borderRadius: '12px', padding: '12px 18px',
+              maxWidth: '360px',
+              boxShadow: isDark
+                ? '0 0 30px rgba(99,102,241,0.15)'
+                : '0 12px 30px rgba(15,23,42,0.12)',
+            }}
+          >
+            <p style={{
+              margin: 0,
+              color: isDark ? '#c7d2fe' : '#7c2d12',
+              fontSize: '12px', fontFamily: 'monospace',
+              lineHeight: 1.6, letterSpacing: '0.02em',
+            }}>
+              💡 <em>{joke}</em>
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Bottom ticker */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 12,
+        height: '36px', overflow: 'hidden',
+        background: isDark ? 'rgba(10,10,20,0.9)' : 'rgba(255,255,255,0.85)',
+        backdropFilter: 'blur(12px)',
+        borderTop: isDark
+          ? '1px solid rgba(255,255,255,0.05)'
+          : '1px solid rgba(15,23,42,0.08)',
+        display: 'flex', alignItems: 'center',
+      }}>
+        <div style={{
+          display: 'flex', gap: '60px', whiteSpace: 'nowrap',
+          animation: 'ticker 30s linear infinite',
+          color: isDark ? 'rgba(148,163,184,0.5)' : 'rgba(124,45,18,0.55)',
+          fontSize: '10px',
+          fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase',
+        }}>
+          {[
+            '✦ move mouse for parallax vibes',
+            '✦ hover cards to reveal captions',
+            '✦ click cards for dev wisdom',
+            '✦ undefined is a lifestyle choice',
+            '✦ git commit -m "it works now"',
+            '✦ debugging: staring contest edition',
+            '✦ it works on my machine',
+            '✦ snack-powered engineering',
+            // duplicate for seamless loop
+            '✦ move mouse for parallax vibes',
+            '✦ hover cards to reveal captions',
+            '✦ click cards for dev wisdom',
+            '✦ undefined is a lifestyle choice',
+            '✦ git commit -m "it works now"',
+            '✦ debugging: staring contest edition',
+            '✦ it works on my machine',
+            '✦ snack-powered engineering',
+          ].join('          ')}
+        </div>
       </div>
     </div>
   );

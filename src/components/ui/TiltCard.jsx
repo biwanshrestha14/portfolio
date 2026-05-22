@@ -48,7 +48,7 @@ const TiltCard = ({ children, className = '' }) => {
       {/* 3D Content Container */}
       <div 
         style={{ transform: 'translateZ(20px)' }}
-        className="h-full w-full rounded-2xl bg-zinc-950/60 border border-white/[0.08] backdrop-blur-md overflow-hidden"
+        className="h-full w-full rounded-2xl bg-[#fff8f2] dark:bg-zinc-950/60 border border-orange-100 dark:border-white/[0.08] backdrop-blur-md overflow-hidden"
       >
         {/* Shine effect */}
         <motion.div

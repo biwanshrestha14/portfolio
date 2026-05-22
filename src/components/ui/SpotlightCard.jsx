@@ -19,7 +19,7 @@ const SpotlightCard = ({ children, className = '', spotlightColor = 'rgba(6, 182
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsFocused(true)}
       onMouseLeave={() => setIsFocused(false)}
-      className={`relative overflow-hidden rounded-2xl border border-white/[0.08] bg-zinc-950/40 p-6 backdrop-blur-md transition-all duration-500 group ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#fff8f2]/90 dark:bg-zinc-950/40 p-6 backdrop-blur-md transition-all duration-500 group ${className}`}
     >
       {/* Spotlight overlay */}
       <div

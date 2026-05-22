@@ -54,20 +54,20 @@ const Home = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/25 bg-cyan-500/5 text-cyan-400 text-xs font-mono tracking-widest uppercase mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-200 dark:border-cyan-500/25 bg-orange-50/40 dark:bg-cyan-500/5 text-orange-600 dark:text-cyan-400 text-xs font-mono tracking-widest uppercase mb-6"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-cyan-400 animate-pulse" />
             <span>Available for Hire</span>
           </motion.div>
           
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white leading-[1.05] tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-orange-950 dark:text-white leading-[1.05] tracking-tighter">
             <SplitText text="BIWAN SHRESTHA" duration={0.8} />
           </h1>
           
           {/* Subheading */}
-          <div className="mt-4 text-lg md:text-xl font-mono text-zinc-300 flex items-center gap-2 justify-center lg:justify-start min-h-[40px]">
-            <span className="text-purple-400">&gt;_</span>
+          <div className="mt-4 text-lg md:text-xl font-mono text-orange-900 dark:text-zinc-300 flex items-center gap-2 justify-center lg:justify-start min-h-[40px]">
+            <span className="text-orange-600 dark:text-purple-400">&gt;_</span>
             <span ref={typedRef}></span>
           </div>
 
@@ -75,7 +75,7 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 1 }}
-            className="text-zinc-400 text-sm md:text-base max-w-xl mt-6 leading-relaxed font-light"
+            className="text-orange-850 dark:text-zinc-400 text-sm md:text-base max-w-xl mt-6 leading-relaxed font-light"
           >
             I engineer modern, fast full-stack applications with beautiful visual design and robust server architectures. Currently pursuing BSCSIT, specializing in Node.js, React, and Django backend logic.
           </motion.p>
@@ -85,7 +85,7 @@ const Home = () => {
             <Magnetic range={50}>
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-mono text-xs tracking-widest font-bold uppercase transition-all duration-300 bg-white text-zinc-950 hover:bg-cyan-400 hover:text-zinc-950 shadow-[0_4px_20px_rgba(255,255,255,0.15)] hover:shadow-[0_4px_25px_rgba(6,182,212,0.4)]"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-mono text-xs tracking-widest font-bold uppercase transition-all duration-300 bg-orange-600 dark:bg-white text-white dark:text-zinc-950 hover:bg-orange-700 dark:hover:bg-cyan-400 hover:text-white dark:hover:text-zinc-950 shadow-[0_4px_20px_rgba(249,115,22,0.15)] dark:shadow-[0_4px_20px_rgba(255,255,255,0.15)] hover:shadow-[0_4px_25px_rgba(249,115,22,0.4)]"
               >
                 Selected Work
               </a>
@@ -94,7 +94,7 @@ const Home = () => {
             <Magnetic range={50}>
               <a
                 href="#contactme"
-                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-mono text-xs tracking-widest font-bold uppercase transition-all duration-300 border border-white/10 hover:border-white/30 bg-zinc-950/40 text-white hover:bg-zinc-900"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-mono text-xs tracking-widest font-bold uppercase transition-all duration-300 border border-orange-200 dark:border-white/10 hover:border-orange-350 dark:hover:border-white/30 bg-white/40 dark:bg-zinc-950/40 text-orange-900 dark:text-white hover:bg-orange-55 dark:hover:bg-zinc-900"
               >
                 Get In Touch
               </a>
@@ -102,31 +102,31 @@ const Home = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-6 mt-12 pt-8 border-t border-white/[0.05] w-full justify-center lg:justify-start">
+          <div className="flex items-center gap-6 mt-12 pt-8 border-t border-orange-100 dark:border-white/[0.05] w-full justify-center lg:justify-start">
             <Magnetic range={30}>
               <button 
                 onClick={openLinkedIn}
-                className="text-xs font-mono tracking-widest text-zinc-500 hover:text-white uppercase transition-colors"
+                className="text-xs font-mono tracking-widest text-orange-750 hover:text-orange-950 dark:text-zinc-500 dark:hover:text-white uppercase transition-colors"
               >
                 LinkedIn
               </button>
             </Magnetic>
-            <span className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-200 dark:bg-zinc-800" />
             <Magnetic range={30}>
               <button 
                 onClick={openInstagram}
-                className="text-xs font-mono tracking-widest text-zinc-500 hover:text-white uppercase transition-colors"
+                className="text-xs font-mono tracking-widest text-orange-750 hover:text-orange-950 dark:text-zinc-500 dark:hover:text-white uppercase transition-colors"
               >
                 Instagram
               </button>
             </Magnetic>
-            <span className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-200 dark:bg-zinc-800" />
             <Magnetic range={30}>
               <a 
                 href="https://github.com/biwanshrestha14" 
                 target="_blank" 
                 rel="noreferrer"
-                className="text-xs font-mono tracking-widest text-zinc-500 hover:text-white uppercase transition-colors"
+                className="text-xs font-mono tracking-widest text-orange-750 hover:text-orange-950 dark:text-zinc-500 dark:hover:text-white uppercase transition-colors"
               >
                 GitHub
               </a>

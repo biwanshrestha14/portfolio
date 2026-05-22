@@ -50,19 +50,19 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden bg-zinc-950/40">
+    <section id="projects" className="py-24 relative overflow-hidden bg-orange-50/20 dark:bg-zinc-950/40">
       
       {/* Background orbs */}
-      <div className="absolute left-1/3 top-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute right-1/3 bottom-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute left-1/3 top-1/4 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute right-1/3 bottom-1/4 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
         <ScrollReveal direction="up" className="text-center mb-20">
-          <span className="text-xs font-mono tracking-[0.25em] text-cyan-400 uppercase">Selected Work</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mt-3 tracking-tight">Featured Projects</h2>
-          <p className="text-zinc-400 text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed font-mono">
+          <span className="text-xs font-mono tracking-[0.25em] text-orange-600 dark:text-cyan-400 uppercase">Selected Work</span>
+          <h2 className="text-4xl md:text-5xl font-black text-orange-950 dark:text-white mt-3 tracking-tight">Featured Projects</h2>
+          <p className="text-orange-850 dark:text-zinc-400 text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed font-mono">
             A showcase of my recent work, featuring modern web applications built with cutting-edge technologies.
           </p>
         </ScrollReveal>
@@ -79,7 +79,7 @@ const Projects = () => {
               <TiltCard className="group flex flex-col justify-between h-full w-full">
                 
                 {/* Image Container with organic zoom and tilt reveals */}
-                <div className="relative h-48 sm:h-52 overflow-hidden bg-zinc-900 border-b border-white/[0.05]">
+                <div className="relative h-48 sm:h-52 overflow-hidden bg-zinc-900 border-b border-orange-100 dark:border-white/[0.05]">
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={`${project.title} Preview`}
@@ -88,7 +88,7 @@ const Projects = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-60" />
                   
                   {/* Category Pill Tag */}
-                  <span className="absolute top-4 right-4 px-2.5 py-1 text-[10px] font-mono font-bold tracking-widest uppercase bg-zinc-950/80 backdrop-blur-md text-white rounded border border-white/[0.08]">
+                  <span className="absolute top-4 right-4 px-2.5 py-1 text-[10px] font-mono font-bold tracking-widest uppercase bg-zinc-900/80 dark:bg-zinc-950/80 backdrop-blur-md text-white rounded border border-orange-200 dark:border-white/[0.08]">
                     {project.badge}
                   </span>
                 </div>
@@ -98,7 +98,7 @@ const Projects = () => {
                   <div className="space-y-4">
                     
                     {/* Title */}
-                    <h3 className="text-lg md:text-xl font-bold text-white transition-colors duration-300 group-hover:text-cyan-400">
+                    <h3 className="text-lg md:text-xl font-bold text-orange-950 dark:text-white transition-colors duration-300 group-hover:text-orange-600 dark:group-hover:text-cyan-400">
                       {project.title}
                     </h3>
 
@@ -107,7 +107,7 @@ const Projects = () => {
                       {project.technologies.map((tech, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-2.5 py-0.5 text-[10px] font-mono bg-white/[0.03] text-zinc-400 rounded border border-white/[0.05]"
+                          className="px-2.5 py-0.5 text-[10px] font-mono bg-orange-50 dark:bg-white/[0.03] text-orange-850 dark:text-zinc-400 rounded border border-orange-100 dark:border-white/[0.05]"
                         >
                           {tech}
                         </span>
@@ -115,19 +115,19 @@ const Projects = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-zinc-400 text-xs md:text-sm font-light leading-relaxed text-pretty">
+                    <p className="text-orange-900 dark:text-zinc-400 text-xs md:text-sm font-light leading-relaxed text-pretty">
                       {project.description}
                     </p>
                   </div>
 
                   {/* Call To Actions */}
-                  <div className="flex items-center gap-4 pt-6 mt-6 border-t border-white/[0.05]">
+                  <div className="flex items-center gap-4 pt-6 mt-6 border-t border-orange-100 dark:border-white/[0.05]">
                     <Magnetic range={30}>
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-cyan-400 hover:text-white transition-colors uppercase tracking-widest"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-orange-600 dark:text-cyan-400 hover:text-orange-850 dark:hover:text-white transition-colors uppercase tracking-widest"
                       >
                         <Github className="h-3.5 w-3.5" />
                         Code
@@ -139,7 +139,7 @@ const Projects = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-purple-400 hover:text-white transition-colors uppercase tracking-widest"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-amber-600 dark:text-purple-400 hover:text-amber-800 dark:hover:text-white transition-colors uppercase tracking-widest"
                       >
                         <ExternalLink className="h-3.5 w-3.5" />
                         Demo

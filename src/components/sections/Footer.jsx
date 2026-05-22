@@ -10,43 +10,64 @@ const Footer = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
     
     setIsSending(true);
-    // Simulate API request
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/biwanshrestha77@gmail.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+        })
+      });
+      
+      const data = await response.json();
+      if (response.ok || data.success === "true") {
+        setIsSubmitted(true);
+        setFormState({ name: '', email: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred while sending the message. Please check your connection.");
+    } finally {
       setIsSending(false);
-      setIsSubmitted(true);
-      setFormState({ name: '', email: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
+    }
   };
 
   const contactDetails = [
     {
       title: "Location",
       detail: "Hattiban, Lalitpur",
-      icon: <MapPin className="w-5 h-5 text-cyan-400" />,
+      icon: <MapPin className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />,
       spotlight: "rgba(6, 182, 212, 0.1)"
     },
     {
       title: "Phone",
       detail: "+977 9849966860",
-      icon: <Phone className="w-5 h-5 text-purple-400" />,
-      spotlight: "rgba(139, 92, 246, 0.1)"
+      icon: <Phone className="w-5 h-5 text-amber-600 dark:text-purple-400" />,
+      spotlight: "rgba(245, 158, 11, 0.1)"
     },
     {
       title: "Email",
       detail: "biwanshrestha77@gmail.com",
-      icon: <Mail className="w-5 h-5 text-pink-400" />,
+      icon: <Mail className="w-5 h-5 text-pink-600 dark:text-pink-400" />,
       spotlight: "rgba(236, 72, 153, 0.1)"
     },
     {
       title: "Resume",
       detail: "Download PDF CV",
-      icon: <FileText className="w-5 h-5 text-emerald-400" />,
+      icon: <FileText className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
       spotlight: "rgba(16, 185, 129, 0.1)",
       isLink: true,
       href: CV
@@ -54,11 +75,11 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="pt-24 pb-12 relative overflow-hidden bg-zinc-950 border-t border-white/[0.05]">
+    <footer className="pt-24 pb-12 relative overflow-hidden bg-[#fff1e6] dark:bg-zinc-950 border-t border-orange-100 dark:border-white/[0.05]">
       
       {/* Background glowing gradients */}
-      <div className="absolute left-1/4 bottom-0 w-[400px] h-[300px] rounded-full bg-cyan-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute right-1/4 bottom-0 w-[400px] h-[300px] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute left-1/4 bottom-0 w-[400px] h-[300px] rounded-full bg-orange-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute right-1/4 bottom-0 w-[400px] h-[300px] rounded-full bg-amber-500/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
@@ -68,9 +89,9 @@ const Footer = () => {
           {/* Left Columns: Pitch and Contact Info (2 cols) */}
           <div className="lg:col-span-2 space-y-8">
             <ScrollReveal direction="right">
-              <span className="text-xs font-mono tracking-[0.25em] text-cyan-400 uppercase">Contact</span>
-              <h2 className="text-4xl md:text-5xl font-black text-white mt-3 tracking-tight">Let's Connect</h2>
-              <p className="text-zinc-400 text-sm md:text-base font-light leading-relaxed mt-4">
+              <span className="text-xs font-mono tracking-[0.25em] text-orange-600 dark:text-cyan-400 uppercase">Contact</span>
+              <h2 className="text-4xl md:text-5xl font-black text-orange-950 dark:text-white mt-3 tracking-tight">Let's Connect</h2>
+              <p className="text-orange-800 dark:text-zinc-400 text-sm md:text-base font-light leading-relaxed mt-4">
                 Have a project idea, partnership proposal, or just want to chat? Fill out the form, or reach out through direct channels. I usually respond within 24 hours.
               </p>
             </ScrollReveal>
@@ -81,24 +102,24 @@ const Footer = () => {
                 <ScrollReveal key={idx} direction="right" delay={idx * 0.1}>
                   {card.isLink ? (
                     <a href={card.href} download className="block group">
-                      <div className="flex items-center gap-4 p-4 rounded-xl border border-white/[0.04] bg-zinc-950/40 hover:border-emerald-500/30 hover:bg-zinc-900/40 transition-all duration-300">
-                        <div className="p-2.5 rounded-lg bg-zinc-900 border border-white/[0.08] group-hover:scale-105 transition-transform">
+                      <div className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200 dark:border-white/[0.04] bg-white/40 dark:bg-zinc-950/40 hover:border-emerald-500/30 hover:bg-zinc-100/40 dark:hover:bg-zinc-900/40 transition-all duration-300">
+                        <div className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/[0.08] group-hover:scale-105 transition-transform">
                           {card.icon}
                         </div>
                         <div>
                           <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">{card.title}</h4>
-                          <span className="text-xs font-bold text-white group-hover:text-emerald-400 transition-colors font-mono">{card.detail}</span>
+                          <span className="text-xs font-bold text-zinc-800 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors font-mono">{card.detail}</span>
                         </div>
                       </div>
                     </a>
                   ) : (
-                    <div className="flex items-center gap-4 p-4 rounded-xl border border-white/[0.04] bg-zinc-950/40 hover:border-white/[0.08] transition-all">
-                      <div className="p-2.5 rounded-lg bg-zinc-900 border border-white/[0.08]">
+                    <div className="flex items-center gap-4 p-4 rounded-xl border border-zinc-200 dark:border-white/[0.04] bg-white/40 dark:bg-zinc-950/40 hover:border-zinc-300 dark:hover:border-white/[0.08] transition-all">
+                      <div className="p-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/[0.08]">
                         {card.icon}
                       </div>
                       <div>
                         <h4 className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">{card.title}</h4>
-                        <span className="text-xs font-bold text-zinc-300 font-mono">{card.detail}</span>
+                        <span className="text-xs font-bold text-zinc-700 dark:text-zinc-300 font-mono">{card.detail}</span>
                       </div>
                     </div>
                   )}
@@ -112,25 +133,25 @@ const Footer = () => {
             <ScrollReveal direction="left">
               <SpotlightCard 
                 spotlightColor="rgba(139, 92, 246, 0.1)" 
-                className="border-white/[0.05] bg-zinc-950/60 p-8 rounded-3xl relative overflow-hidden"
+                className="border-zinc-200 dark:border-white/[0.05] bg-white/60 dark:bg-zinc-950/60 p-8 rounded-3xl relative overflow-hidden"
               >
                 
                 {/* Visual elements */}
                 <div className="absolute top-0 right-0 w-16 h-16 border-r border-t border-purple-500/20 rounded-tr-3xl pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 border-l border-b border-purple-500/20 rounded-bl-3xl pointer-events-none" />
 
-                <h3 className="text-xl font-bold text-white mb-6 font-mono tracking-wide uppercase flex items-center gap-2">
+                <h3 className="text-xl font-bold text-zinc-950 dark:text-white mb-6 font-mono tracking-wide uppercase flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
                   Send A Message
                 </h3>
 
                 {isSubmitted ? (
                   <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
-                    <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-450">
                       <CheckCircle className="w-8 h-8" />
                     </div>
-                    <h4 className="text-lg font-bold text-white font-mono">Transmission Successful!</h4>
-                    <p className="text-zinc-400 text-xs max-w-xs leading-relaxed">
+                    <h4 className="text-lg font-bold text-zinc-950 dark:text-white font-mono">Transmission Successful!</h4>
+                    <p className="text-zinc-600 dark:text-zinc-400 text-xs max-w-xs leading-relaxed">
                       Thank you for reaching out. Your message has been encrypted and sent. I'll get back to you shortly.
                     </p>
                   </div>
@@ -145,7 +166,7 @@ const Footer = () => {
                           value={formState.name}
                           onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                           placeholder="e.g. John Doe"
-                          className="w-full bg-zinc-900/60 text-white placeholder-zinc-600 text-xs rounded-xl border border-white/[0.06] focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 p-4 transition-all outline-none font-mono"
+                          className="w-full bg-zinc-100/60 dark:bg-zinc-900/60 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 text-xs rounded-xl border border-zinc-200 dark:border-white/[0.06] focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 p-4 transition-all outline-none font-mono"
                         />
                       </div>
                       <div className="space-y-2">
@@ -156,7 +177,7 @@ const Footer = () => {
                           value={formState.email}
                           onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                           placeholder="e.g. john@example.com"
-                          className="w-full bg-zinc-900/60 text-white placeholder-zinc-600 text-xs rounded-xl border border-white/[0.06] focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 p-4 transition-all outline-none font-mono"
+                          className="w-full bg-zinc-100/60 dark:bg-zinc-900/60 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 text-xs rounded-xl border border-zinc-200 dark:border-white/[0.06] focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 p-4 transition-all outline-none font-mono"
                         />
                       </div>
                     </div>
@@ -169,7 +190,7 @@ const Footer = () => {
                         value={formState.message}
                         onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                         placeholder="Hello Biwan, I'd love to collaborate on..."
-                        className="w-full bg-zinc-900/60 text-white placeholder-zinc-600 text-xs rounded-xl border border-white/[0.06] focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 p-4 transition-all outline-none font-mono resize-none"
+                        className="w-full bg-zinc-100/60 dark:bg-zinc-900/60 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 text-xs rounded-xl border border-zinc-200 dark:border-white/[0.06] focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/50 p-4 transition-all outline-none font-mono resize-none"
                       />
                     </div>
 
@@ -177,7 +198,7 @@ const Footer = () => {
                       <button
                         type="submit"
                         disabled={isSending}
-                        className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-purple-500 text-zinc-950 hover:bg-purple-400 font-mono text-xs tracking-widest font-bold uppercase transition-all duration-300 disabled:opacity-50 shadow-[0_4px_20px_rgba(139,92,246,0.25)] cursor-pointer"
+                        className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-purple-600 dark:bg-purple-500 text-white dark:text-zinc-950 hover:bg-purple-700 dark:hover:bg-purple-400 font-mono text-xs tracking-widest font-bold uppercase transition-all duration-300 disabled:opacity-50 shadow-[0_4px_20px_rgba(139,92,246,0.25)] cursor-pointer"
                       >
                         {isSending ? (
                           <>Encrypting &amp; Sending...</>
@@ -198,9 +219,9 @@ const Footer = () => {
         </div>
 
         {/* Social Media & Copyright Footer bottom */}
-        <div className="pt-12 border-t border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="pt-12 border-t border-zinc-200 dark:border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
-            <span className="text-sm font-black text-white tracking-widest">BIWAN SHRESTHA</span>
+            <span className="text-sm font-black text-zinc-900 dark:text-white tracking-widest">BIWAN SHRESTHA</span>
             <p className="text-zinc-500 text-[10px] font-mono mt-1">FINAL YEAR CSIT STUDENT &bull; FULL STACK DEVELOPER</p>
           </div>
 
@@ -238,7 +259,7 @@ const Footer = () => {
               <Magnetic key={idx} range={20} actionScale={1.1}>
                 <button
                   onClick={() => window.open(social.href, '_blank')}
-                  className="w-10 h-10 rounded-full border border-white/[0.08] hover:border-white/20 bg-zinc-900/60 hover:bg-zinc-900 text-zinc-400 hover:text-white flex items-center justify-center transition-all shadow-md cursor-pointer"
+                  className="w-10 h-10 rounded-full border border-zinc-200 dark:border-white/[0.08] hover:border-zinc-300 dark:hover:border-white/20 bg-zinc-100 dark:bg-zinc-900/60 hover:bg-zinc-200 dark:hover:bg-zinc-900 text-zinc-650 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white flex items-center justify-center transition-all shadow-md cursor-pointer"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -248,7 +269,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4 text-xs font-mono text-zinc-600">
+        <div className="flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-600">
           <span>&copy; {new Date().getFullYear()} BIWAN SHRESTHA. ALL RIGHTS ENCRYPTED.</span>
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />

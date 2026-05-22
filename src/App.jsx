@@ -28,16 +28,17 @@ function App() {
 
   const isDark = theme === 'dark';
 
-  // Apply theme class to body
+  // Apply theme class to body and html
   useEffect(() => {
     document.body.className = theme;
+    document.documentElement.className = theme;
   }, [theme]);
 
   return (
     <div className={`main min-h-screen w-full font-['biwan'] transition-colors duration-500 ${
       isDark
         ? 'bg-zinc-950 text-zinc-100 selection:bg-cyan-500/30 selection:text-white'
-        : 'bg-[#f8f9fa] text-zinc-900 selection:bg-cyan-500/20 selection:text-zinc-900'
+        : 'bg-transparent text-orange-950 selection:bg-orange-500/20 selection:text-orange-950'
     }`}>
       {/* Dynamic Cinematic Canvas Background */}
       <InteractiveBackground theme={theme} />

@@ -40,16 +40,16 @@ const Timeline = () => {
   ];
 
   return (
-    <section id="timeline" className="py-24 relative overflow-hidden bg-zinc-950/20">
+    <section id="timeline" className="py-24 relative overflow-hidden bg-orange-50/10 dark:bg-zinc-950/20">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
         <ScrollReveal direction="up" className="text-center mb-20">
-          <span className="text-xs font-mono tracking-[0.25em] text-cyan-400 uppercase">My Journey</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mt-3 tracking-tight">
+          <span className="text-xs font-mono tracking-[0.25em] text-orange-600 dark:text-cyan-400 uppercase">My Journey</span>
+          <h2 className="text-4xl md:text-5xl font-black text-orange-950 dark:text-white mt-3 tracking-tight">
             Academic &amp; Tech Timeline
           </h2>
-          <p className="text-zinc-400 text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed font-mono">
+          <p className="text-orange-800 dark:text-zinc-400 text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed font-mono">
             A linear progression of my academic qualifications and development milestones.
           </p>
         </ScrollReveal>
@@ -57,30 +57,30 @@ const Timeline = () => {
         {/* Timeline Container */}
         <div className="relative">
           {/* Vertical Connecting Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 via-purple-500 to-transparent -translate-x-1/2 opacity-30 hidden md:block" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-amber-400 to-transparent -translate-x-1/2 opacity-30 hidden md:block" />
           
           <div className="space-y-12 md:space-y-20">
             {timelineData.map((item, index) => {
               const isEven = index % 2 === 0;
               return (
                 <div key={index} className="flex flex-col md:flex-row items-stretch">
-                  
+                   
                   {/* Left Column (Content or Spacer) */}
                   <div className={`w-full md:w-1/2 pr-0 md:pr-12 flex justify-end order-2 ${isEven ? 'md:order-1' : 'md:order-3 md:invisible h-0 md:h-auto'}`}>
                     {isEven && (
                       <ScrollReveal direction="right" className="w-full">
-                        <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.15)" className="h-full border-purple-500/10">
+                        <SpotlightCard spotlightColor="rgba(249, 115, 22, 0.12)" className="h-full border-orange-100 dark:border-purple-500/10">
                           <div className="flex justify-between items-start gap-4 mb-3">
-                            <span className="text-xs font-mono font-bold text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20">
+                            <span className="text-xs font-mono font-bold text-orange-700 dark:text-purple-400 bg-orange-100 dark:bg-purple-500/10 px-3 py-1 rounded-full border border-orange-200 dark:border-purple-500/20">
                               {item.year}
                             </span>
                           </div>
-                          <h3 className="text-lg md:text-xl font-bold text-white mb-1">{item.title}</h3>
-                          <h4 className="text-xs font-mono text-zinc-400 mb-4">{item.institution}</h4>
-                          <p className="text-zinc-300 text-xs md:text-sm leading-relaxed mb-6 font-light">{item.description}</p>
+                          <h3 className="text-lg md:text-xl font-bold text-orange-950 dark:text-white mb-1">{item.title}</h3>
+                          <h4 className="text-xs font-mono text-orange-700 dark:text-zinc-400 mb-4">{item.institution}</h4>
+                          <p className="text-orange-900 dark:text-zinc-300 text-xs md:text-sm leading-relaxed mb-6 font-light">{item.description}</p>
                           <div className="flex flex-wrap gap-2">
                             {item.tags.map((tag, tIdx) => (
-                              <span key={tIdx} className="text-[10px] font-mono bg-zinc-900 text-purple-300 px-2 py-0.5 rounded border border-white/[0.05]">
+                              <span key={tIdx} className="text-[10px] font-mono bg-orange-50 dark:bg-zinc-900 text-orange-700 dark:text-purple-300 px-2 py-0.5 rounded border border-orange-100 dark:border-white/[0.05]">
                                 #{tag}
                               </span>
                             ))}
@@ -92,8 +92,8 @@ const Timeline = () => {
 
                   {/* Center Node (Glow Indicator) */}
                   <div className="relative w-8 flex justify-center order-1 md:order-2 z-10 mb-4 md:mb-0">
-                    <div className="w-4 h-4 rounded-full bg-zinc-950 border-2 border-cyan-400 flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.5)] md:mt-8">
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                    <div className="w-4 h-4 rounded-full bg-white dark:bg-zinc-950 border-2 border-orange-500 dark:border-cyan-400 flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.4)] dark:shadow-[0_0_15px_rgba(6,182,212,0.5)] md:mt-8">
+                      <div className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-cyan-400 animate-ping" />
                     </div>
                   </div>
 
@@ -101,18 +101,18 @@ const Timeline = () => {
                   <div className={`w-full md:w-1/2 pl-0 md:pl-12 flex justify-start order-3 ${!isEven ? 'md:order-3' : 'md:order-1 md:invisible h-0 md:h-auto'}`}>
                     {!isEven && (
                       <ScrollReveal direction="left" className="w-full">
-                        <SpotlightCard spotlightColor="rgba(6, 182, 212, 0.15)" className="h-full border-cyan-500/10">
+                        <SpotlightCard spotlightColor="rgba(245, 158, 11, 0.12)" className="h-full border-amber-100 dark:border-cyan-500/10">
                           <div className="flex justify-between items-start gap-4 mb-3">
-                            <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
+                            <span className="text-xs font-mono font-bold text-amber-700 dark:text-cyan-400 bg-amber-50 dark:bg-cyan-500/10 px-3 py-1 rounded-full border border-amber-200 dark:border-cyan-500/20">
                               {item.year}
                             </span>
                           </div>
-                          <h3 className="text-lg md:text-xl font-bold text-white mb-1">{item.title}</h3>
-                          <h4 className="text-xs font-mono text-zinc-400 mb-4">{item.institution}</h4>
-                          <p className="text-zinc-300 text-xs md:text-sm leading-relaxed mb-6 font-light">{item.description}</p>
+                          <h3 className="text-lg md:text-xl font-bold text-orange-950 dark:text-white mb-1">{item.title}</h3>
+                          <h4 className="text-xs font-mono text-orange-700 dark:text-zinc-400 mb-4">{item.institution}</h4>
+                          <p className="text-orange-900 dark:text-zinc-300 text-xs md:text-sm leading-relaxed mb-6 font-light">{item.description}</p>
                           <div className="flex flex-wrap gap-2">
                             {item.tags.map((tag, tIdx) => (
-                              <span key={tIdx} className="text-[10px] font-mono bg-zinc-900 text-cyan-300 px-2 py-0.5 rounded border border-white/[0.05]">
+                              <span key={tIdx} className="text-[10px] font-mono bg-amber-50 dark:bg-zinc-900 text-amber-700 dark:text-cyan-300 px-2 py-0.5 rounded border border-amber-100 dark:border-white/[0.05]">
                                 #{tag}
                               </span>
                             ))}
