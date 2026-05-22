@@ -1,28 +1,22 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/layout/Navbar';
-import Sidebar from './components/layout/Sidebar';
 import CursorFollower from './components/layout/CursorFollower';
+import InteractiveBackground from './components/ui/InteractiveBackground';
 import Home from './components/sections/Home';
 import Profile from './components/sections/Profile';
 import Projects from './components/sections/Projects';
-import Footer from './components/sections/Footer';
+import Timeline from './components/sections/Timeline';
 import Github from './components/sections/Github';
-// Import CSS directly in App.jsx
-import './App.css';
-// Import Typed.js
-import Typed from 'typed.js';
+import Footer from './components/sections/Footer';
 
+// Import CSS
+import './App.css';
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [theme, setTheme] = useState(() => {
-    // Get theme from localStorage or default to 'dark'
+    // Default to dark theme for premium editorial aesthetic
     return localStorage.getItem('theme') || 'dark';
   });
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -35,50 +29,22 @@ function App() {
     document.body.className = theme;
   }, [theme]);
 
-  // Handle hamburger menu click
-    useEffect(() => {
-      const hamburger = document.getElementById('hamburger');
-      if (hamburger) {
-        hamburger.addEventListener('click', toggleSidebar);
-      }
-
-    // Handle backdrop click to close sidebar
-    const handleBackdropClick = (e) => {
-      if (sidebarOpen && e.target.classList.contains('backdrop')) {
-        setSidebarOpen(false);
-      }
-    };
-    document.addEventListener('click', handleBackdropClick);
-
-    // Implement cursor follower
-    const cursor = document.querySelector('.cursor');
-    if (cursor) {
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-      });
-    }
-
-    return () => {
-      if (hamburger) {
-        hamburger.removeEventListener('click', toggleSidebar);
-      }
-      document.removeEventListener('click', handleBackdropClick);
-      document.removeEventListener('mousemove', () => {});
-    };
-  }, [sidebarOpen]);
-
   return (
-    <div className={`main bg-[--background] h-full w-full text-[--text] font-['biwan'] ${theme}`}>
-      {/* Backdrop for sidebar */}
-      {sidebarOpen && <div className="backdrop fixed inset-0 bg-black bg-opacity-50 z-10" onClick={() => setSidebarOpen(false)}></div>}
+    <div className={`main bg-zinc-950 min-h-screen w-full text-zinc-100 font-['biwan'] transition-colors duration-500 selection:bg-cyan-500/30 selection:text-white ${theme}`}>
+      {/* Dynamic Cinematic Canvas Background */}
+      <InteractiveBackground theme={theme} />
       
+      {/* Morphing Custom Trailing Cursor */}
       <CursorFollower />
+      
+      {/* Glassmorphic Top Navigation bar */}
       <Navbar toggleTheme={toggleTheme} currentTheme={theme} />
-      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+      
+      {/* Content Sections */}
       <Home />
       <Profile />
       <Projects />
+      <Timeline />
       <Github />
       <Footer />
     </div>
